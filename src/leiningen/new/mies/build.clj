@@ -7,7 +7,10 @@
     {:main '{{name}}.core
      :output-to "out/{{sanitized}}.js"
      :output-dir "out"
-     :verbose true})
+     :verbose true
+     {{#nodejs-hook?}}
+     :target :nodejs
+     {{/nodejs-hook?}}})
   (println "... done. Elapsed" (/ (- (System/nanoTime) start) 1e9) "seconds"))
 
 

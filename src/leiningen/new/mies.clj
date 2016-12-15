@@ -2,11 +2,18 @@
   (:require [leiningen.new.templates :refer
              [renderer name-to-path ->files]]))
 
+(def valid-opts ["+nodejs"])
+(defn valid-opts? [opts]
+  (every? #(some #{%} valid-opts) opts))
+(defn nodejs? [opts]
+  (some #{"+nodejs"} opts))
+
 (def render (renderer "mies"))
 
-(defn mies [name]
+(defn mies [name & opts]
   (let [data {:name name
-              :sanitized (name-to-path name)}]
+              :sanitized (name-to-path name)
+              :nodejs-hook? (fn [block] (if (nodejs? opts) (str block "") ""))}]
     (->files data
       ["project.clj" (render "project.clj" data)]
       ["src/{{sanitized}}/core.cljs" (render "core.cljs" data)]

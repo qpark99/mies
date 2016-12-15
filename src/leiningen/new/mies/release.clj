@@ -7,5 +7,8 @@
     {:output-to "release/{{sanitized}}.js"
      :output-dir "release"
      :optimizations :advanced
-     :verbose true})
+     :verbose true
+     {{#nodejs-hook?}}
+     :target :nodejs
+     {{/nodejs-hook?}}})
   (println "... done. Elapsed" (/ (- (System/nanoTime) start) 1e9) "seconds"))

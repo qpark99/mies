@@ -7,7 +7,10 @@
   {:main '{{name}}.core
    :output-to "out/{{sanitized}}.js"
    :output-dir "out"
-   :verbose true})
+   :verbose true
+   {{#nodejs-hook?}}
+   :target :nodejs
+   {{/nodejs-hook?}}})
 
 (repl/repl (browser/repl-env)
   :output-dir "out")
