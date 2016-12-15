@@ -4,6 +4,12 @@ A minimal ClojureScript template.
 
 ## Usage
 
+To create a new project on nodejs: 
+```
+lein new mies hello-world +nodejs
+cd hello-world
+```
+
 To create a new project: 
 ```
 lein new mies hello-world
